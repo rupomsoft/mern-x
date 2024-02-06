@@ -2,14 +2,25 @@
   "name": "mern-x",
   "version": "1.0.31",
   "description": "MERN-X is a comprehensive full-stack framework designed to streamline the development of web applications using the popular MERN stack: MongoDB, Express.js, React, and Node.js. Built with simplicity and scalability in mind, MERN.js empowers developers to create robust and efficient applications from end to end.",
-  "main": "bin/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
     "mern-x": "bin/index.js"
   },
+  "postinstall": "npx mern-x",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.9"
+  }
 }
