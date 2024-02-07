@@ -1,16 +1,26 @@
 {
   "name": "mern-x",
-  "version": "1.0.46",
+  "version": "1.0.51",
   "description": "MERN-X is a comprehensive full-stack project structure designed to streamline the development of web applications using the popular MERN stack: MongoDB, Express.js, React, and Node.js. Built with simplicity and scalability in mind, MERN.js empowers developers to create robust and efficient applications from end to end.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
     "mern-x": "bin/installer.js"
   },
-  "keywords": ["MERN","MERN Stack","React","Express","MongoDB","Node JS","MERN Project"],
-  "author": "",
+  "keywords": [
+    "MERN",
+    "MERN Stack",
+    "React",
+    "Express",
+    "MongoDB",
+    "Node JS",
+    "MERN Project"
+  ],
+  "author": "MERN-X",
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "^1.4.6",
@@ -20,6 +30,7 @@
     "helmet": "^7.1.0",
     "hpp": "^0.2.3",
     "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.1.1",
     "nodemailer": "^6.9.9"
   }
 }

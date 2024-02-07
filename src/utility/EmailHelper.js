@@ -1,22 +1,32 @@
-const nodemailer=require('nodemailer');
-const EmailSend=async (EmailTo,EmailText,EmailSubject)=>{
-    let transporter = nodemailer.createTransport({
-        host: 'Your Host Here',
-        port: 25,
+import nodemailer from 'nodemailer';
+import {EMAIL_HOST, EMAIL_PASSWORD, EMAIL_PORT, EMAIL_USER} from "./Config.js";
+
+const EmailSend = async (EmailTo, EmailText, EmailSubject) => {
+    const transporter = nodemailer.createTransport({
+        host: EMAIL_HOST,
+        port:EMAIL_PORT,
         secure: false,
         auth: {
-            user: "Email Here",
-            pass: 'Password Here'
-        },tls: {
+            user: EMAIL_USER,
+            pass: EMAIL_PASSWORD,
+        },
+        tls: {
             rejectUnauthorized: false
         },
     });
-    let mailOptions = {
-        from: '',
+
+    const mailOptions = {
+        from: EMAIL_USER,
         to: EmailTo,
         subject: EmailSubject,
         text: EmailText
     };
-    return  await transporter.sendMail(mailOptions)
-}
-module.exports=EmailSend;
+
+    try {
+        return await transporter.sendMail(mailOptions);
+    } catch (error) {
+        throw error;
+    }
+};
+
+export default EmailSend;

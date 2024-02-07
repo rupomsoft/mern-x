@@ -1,18 +1,18 @@
-const jwt=require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
+import {JWT_EXPIRATION_TIME, JWT_SECRET} from "./Config.js";
 
-exports.EncodeToken=(email,user_id)=>{
-    let KEY="123-ABC-XYZ";
-    let EXPIRE={expiresIn: '30d'}
-    let PAYLOAD={email:email, user_id:user_id}
-    return jwt.sign(PAYLOAD,KEY,EXPIRE)
-}
+export const EncodeToken = (email, user_id) => {
+    const KEY = JWT_SECRET;
+    const EXPIRE = { expiresIn: JWT_EXPIRATION_TIME };
+    const PAYLOAD = { email: email, user_id: user_id };
+    return jwt.sign(PAYLOAD, KEY, EXPIRE);
+};
 
-exports.DecodeToken=(token)=>{
+export const DecodeToken = (token) => {
     try {
-        let KEY="123-ABC-XYZ";
-        return jwt.verify(token,KEY)
+        const KEY = process.env.JWT_SECRET;
+        return jwt.verify(token, KEY);
+    } catch (error) {
+        return null;
     }
-    catch (e) {
-        return null
-    }
-}
+};

@@ -1,39 +1,54 @@
-const express =require('express');
-const router =require('./src/routes/api');
-const app= new express();
+import express from 'express';
+import mongoose from 'mongoose';
+import router from './src/routes/api.js';
+import rateLimit from 'express-rate-limit';
+import helmet from 'helmet';
+import hpp from 'hpp';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import path from 'path';
+import {MAX_JSON_SIZE, MAX_URL_ENCODED_SIZE, MONGODB_CONNECTION, REQUEST_LIMIT_NUMBER, REQUEST_LIMIT_TIME, WEB_CACHE} from "./src/utility/Config.js";
 
-const rateLimit =require('express-rate-limit');
-const helmet =require('helmet');
+const app = express();
 
-const hpp =require('hpp');
-const cors =require('cors');
-const cookieParser = require('cookie-parser');
-const path = require("path");
-
+// Middleware
 app.use(cookieParser());
-app.use(cors())
-app.use(helmet())
-app.use(hpp())
+app.use(cors());
+app.use(helmet());
+app.use(hpp());
 
-app.use(express.json({limit: '50mb'}));
-app.use(express.urlencoded({limit: '50mb'}));
-
-const limiter= rateLimit({windowMs:15*60*1000,max:3000})
-app.use(limiter)
+// Body parsing middleware with increased limit
+app.use(express.json({ limit: MAX_JSON_SIZE }));
+app.use(express.urlencoded({ limit: MAX_URL_ENCODED_SIZE }));
 
 
-// Apply ETag middleware with the 'false' option
-app.set('etag', false);
+// Rate limiting middleware
+const limiter = rateLimit({ windowMs: REQUEST_LIMIT_TIME, max: REQUEST_LIMIT_NUMBER });
+app.use(limiter);
 
 
+// Web cache validation and conditional requests in HTTP
+app.set('etag', WEB_CACHE);
 
-app.use("/api/v1",router)
+// MongoDB connection
+mongoose.connect(MONGODB_CONNECTION, {autoIndex: true})
+    .then(() => {
+        console.log("Database Connected");
+    })
+    .catch((err) => {
+        console.error("Database connection error:", err);
+});
 
+// API routes
+app.use("/api", router);
+
+// Serve static assets for React front end
 app.use(express.static('client/dist'));
 
-// Add React Front End Routing
-app.get('*',function (req,res) {
-    res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
-})
 
-module.exports=app;
+// Serve React front end for all routes not handled by the API
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
+});
+
+export default app;

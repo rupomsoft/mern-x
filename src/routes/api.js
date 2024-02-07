@@ -1,18 +1,10 @@
-const express=require('express');
-
-const WelcomeController=require('../controllers/WelcomeController')
-
-
-
-const router=express.Router();
+import express from 'express';
+import * as WelcomeController from '../controllers/WelcomeController.js';
+const router = express.Router();
 
 
+// Define route for "/WelcomeAPI" endpoint
+router.get('/welcome', WelcomeController.Welcome);
 
 
-
-router.get('/WelcomeAPI',AuthVerification,WelcomeController.Welcome)
-
-
-
-
-module.exports=router;
+export default router;

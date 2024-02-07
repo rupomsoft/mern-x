@@ -1,13 +1,13 @@
-#! /usr/bin/env node
+#!/usr/bin/env node
 
-const { spawn } = require('child_process');
-const path = require('path');
+import { spawn } from 'child_process';
+import path from 'path';
 
 const repositoryUrl = 'https://github.com/rupomsoft/mern-x';
 const destinationFolder = process.argv[2] || 'MERN-X';
 
 // Define a function to create a spinner animation
-function createSpinner() {
+const createSpinner = () => {
     const frames = ['-', '\\', '|', '/'];
     let index = 0;
 
@@ -15,7 +15,7 @@ function createSpinner() {
         process.stdout.write('\r' + frames[index++] + ' Creating...');
         index = index % frames.length;
     }, 100);
-}
+};
 
 // Start the spinner animation
 const spinner = createSpinner();
@@ -40,16 +40,13 @@ gitClone.on('close', (code) => {
         npmInstallRoot.on('close', (code) => {
             if (code === 0) {
                 console.log('\nProject setup completed successfully!');
-                // Navigate into the 'client' folder and execute 'npm install' there
-                console.log(`\nRunning 'npm install' in '${destinationFolder}/client' folder...`);
-                const clientFolderPath = path.join(projectPath, 'client');
-                process.chdir(clientFolderPath);
-                const npmInstallClient = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['install'], { stdio: 'inherit' });
-                npmInstallClient.on('close', (code) => {
+                console.log(`\nRunning 'npm start' in '${destinationFolder}' folder...`);
+                const npmStart = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['start'], { stdio: 'inherit' });
+                npmStart.on('close', (code) => {
                     if (code === 0) {
-                        console.log('\nClient dependencies installed successfully!');
+                        console.log('\nMERN-X Start Successfully!');
                     } else {
-                        console.error('\nAn error occurred during client npm install.');
+                        console.error('\nAn error occurred during npm start.');
                     }
                 });
             } else {
