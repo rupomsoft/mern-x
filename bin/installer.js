@@ -12,7 +12,7 @@ const createSpinner = () => {
     let index = 0;
 
     return setInterval(() => {
-        process.stdout.write('\r' + frames[index++] + ' Creating...');
+        process.stdout.write('\r' + frames[index++] + ' MERN-X creating project skeleton...');
         index = index % frames.length;
     }, 100);
 };
@@ -32,21 +32,30 @@ gitClone.stderr.on('data', (data) => {
 gitClone.on('close', (code) => {
     clearInterval(spinner); // Stop the spinner when cloning is completed
     if (code === 0) {
-        console.log(`\nProject created into '${destinationFolder}' folder.`);
+        console.log(`\nMERN-X created into '${destinationFolder}' folder.`);
         const projectPath = path.join(process.cwd(), destinationFolder);
         process.chdir(projectPath); // Change current directory to project path
-        console.log(`\nRunning 'npm install' in '${destinationFolder}' folder...`);
+        console.log(`\n MERN-X cooking application back end...`);
         const npmInstallRoot = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['install'], { stdio: 'inherit' });
         npmInstallRoot.on('close', (code) => {
             if (code === 0) {
-                console.log('\nProject setup completed successfully!');
-                console.log(`\nRunning 'npm start' in '${destinationFolder}' folder...`);
-                const npmStart = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['start'], { stdio: 'inherit' });
-                npmStart.on('close', (code) => {
+                console.log('\nMERN-X setup completed successfully!');
+                console.log(`\n MERN-X preparing client...`);
+                const clientFolderPath = path.join(projectPath, 'client');
+                const npmInstallClient = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['install'], { stdio: 'inherit', cwd: clientFolderPath });
+                npmInstallClient.on('close', (code) => {
                     if (code === 0) {
-                        console.log('\nMERN-X Start Successfully!');
+                        console.log(`\nMERN-X Running...`);
+                        const npmStart = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['start'], { stdio: 'inherit' });
+                        npmStart.on('close', (code) => {
+                            if (code === 0) {
+                                console.log('\nMERN-X Start Successfully! browse localhost:5000');
+                            } else {
+                                console.error('\nAn error occurred during npm start.');
+                            }
+                        });
                     } else {
-                        console.error('\nAn error occurred during npm start.');
+                        console.error('\nAn error occurred during client npm install.');
                     }
                 });
             } else {
@@ -57,3 +66,4 @@ gitClone.on('close', (code) => {
         console.error('\nAn error occurred while cloning the repository.');
     }
 });
+
