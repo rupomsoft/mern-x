@@ -40,7 +40,7 @@ gitClone.on('close', (code) => {
         npmInstallRoot.on('close', (code) => {
             if (code === 0) {
                 console.log('\nMERN-X setup completed successfully!');
-                console.log(`\n MERN-X preparing client...`);
+                console.log(`\n MERN-X cooking application front end...`);
                 const clientFolderPath = path.join(projectPath, 'client');
                 const npmInstallClient = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['install'], { stdio: 'inherit', cwd: clientFolderPath });
                 npmInstallClient.on('close', (code) => {
