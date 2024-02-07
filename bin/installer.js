@@ -49,7 +49,7 @@ gitClone.on('close', (code) => {
                         const npmStart = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['start'], { stdio: 'inherit' });
                         npmStart.on('close', (code) => {
                             if (code === 0) {
-                                console.log('\nMERN-X Start Successfully! browse localhost:5000');
+                                console.log('\nMERN-X Start Successfully! browse localhost:4000');
                             } else {
                                 console.error('\nAn error occurred during npm start.');
                             }
