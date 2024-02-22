@@ -8,7 +8,7 @@ npx mern-x@latest
 How to run project 
 ```
 npx run mern   // Project Back End Will Run @3000
-npx run dev    // Complte Project Back End Will Run @3001
+npx run dev    // Complete Project Will Run @3001
 ```
 
 How create Model
