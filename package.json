@@ -1,15 +1,22 @@
 {
   "name": "mern-x",
-  "version": "1.0.55",
+  "version": "1.0.0",
   "description": "MERN-X is a comprehensive full-stack project structure designed to streamline the development of web applications using the popular MERN stack: MongoDB, Express.js, React, and Node.js. Built with simplicity and scalability in mind, MERN.js empowers developers to create robust and efficient applications from end to end.",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "bin": {
-    "mern-x": "bin/installer.js"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "mern": "node app/config/cli.js run:mernx",
+    "create:model": "node app/config/cli.js make:model",
+    "create:controller": "node app/config/cli.js make:controller",
+    "create:middleware": "node app/config/cli.js make:middleware",
+    "create:page": "node app/config/cli.js make:page",
+    "create:component": "node app/config/cli.js make:component",
+    "create:loader": "node app/config/cli.js make:loader",
+    "create:layout": "node app/config/cli.js make:layout"
   },
   "keywords": [
     "MERN",
@@ -23,13 +30,32 @@
   "author": "MERN-X",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
     "helmet": "^7.1.0",
     "hpp": "^0.2.3",
+    "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.1.1",
-    "nodemailer": "^6.9.9"
+    "nodemailer": "^6.9.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^5.0.1",
+    "react-loading-skeleton": "^3.4.0",
+    "react-router-dom": "^6.22.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "chokidar": "^3.6.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.0.8"
   }
 }

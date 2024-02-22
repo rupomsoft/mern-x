@@ -1,32 +1,33 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import router from './src/routes/api.js';
+import router from './routes/api.js';
 import rateLimit from 'express-rate-limit';
+import * as path from "path";
 import helmet from 'helmet';
 import hpp from 'hpp';
 import cors from 'cors';
-import path from 'path';
-import {MAX_JSON_SIZE, MAX_URL_ENCODED_SIZE, MONGODB_CONNECTION, REQUEST_LIMIT_NUMBER, REQUEST_LIMIT_TIME, WEB_CACHE} from "./src/utility/Config.js";
+import cookieParser from "cookie-parser";
+import {MAX_JSON_SIZE, MONGODB_CONNECTION, PORT, REQUEST_LIMIT_NUMBER, REQUEST_LIMIT_TIME, URL_ENCODED, WEB_CACHE} from "./app/config/config.js";
+
 
 const app = express();
 
-// Middleware
+
+// middlewares
 app.use(cors());
 app.use(helmet());
 app.use(hpp());
-
-// Body parsing middleware with increased limit
+app.use(cookieParser())
 app.use(express.json({ limit: MAX_JSON_SIZE }));
-app.use(express.urlencoded({ limit: MAX_URL_ENCODED_SIZE }));
-
-
-// Rate limiting middleware
+app.use(express.urlencoded({extended: URL_ENCODED}));
 const limiter = rateLimit({ windowMs: REQUEST_LIMIT_TIME, max: REQUEST_LIMIT_NUMBER });
 app.use(limiter);
 
 
-// Web cache validation and conditional requests in HTTP
+// Web cache validation and conditional requests in Http
 app.set('etag', WEB_CACHE);
+
+
 
 // MongoDB connection
 mongoose.connect(MONGODB_CONNECTION, {autoIndex: true})
@@ -37,16 +38,20 @@ mongoose.connect(MONGODB_CONNECTION, {autoIndex: true})
         console.error("Database connection error:", err);
 });
 
+
 // API routes
 app.use("/api", router);
 
+
 // Serve static assets for React front end
-app.use(express.static('client/dist'));
+app.use(express.static('dist'));
 
 
 // Serve React front end for all routes not handled by the API
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'app.html'));
 });
 
-export default app;
+app.listen(PORT,()=>{
+    console.log(`MERN-X Server Running ${PORT}`)
+});

@@ -5,36 +5,148 @@ To create a new project using MERN-X, simply run the following command:
 npx mern-x@latest
 ```
 
-This command will fetch the latest version of MERN-X and initialize a new project structure, allowing you to start building your web application with ease.
+How to run project 
+```
+npx run mern   // Project Back End Will Run @3000
+npx run dev    // Complte Project Back End Will Run @3001
+```
 
-## MERN-X - Full-Stack Structure for MongoDB, Express, React, and Node.js
+How create Model
+```
+npm run create:model YourModelName
+```
 
-MERN-X is a comprehensive full-stack project structure crafted to expedite the development of web applications utilizing the MERN stack: MongoDB, Express.js, React, and Node.js. Engineered with simplicity and scalability at its core, MERN-X empowers developers to construct robust and efficient applications end-to-end.
+How create Controller
+```
+npm run create:controller YourControllerName
+```
 
-### Key Features:
+How create Middleware
+```
+npm run create:middleware YourMiddlewareName
+```
 
-1. **Integrated MERN Stack:**
-   Seamlessly combines MongoDB for database management, Express.js for server-side development, React for dynamic client-side interfaces, and Node.js for scalable server applications.
+How create Page
+```
+npm run create:page YourPageName
+```
 
-2. **Routing and Middleware:**
-   Simplifies the implementation of routing and middleware, enabling developers to define and manage endpoints efficiently. This facilitates the creation of organized and structured APIs.
+How create Component
+```
+npm run create:component YourComponentName
+```
 
-3. **Boilerplate Templates:**
-   Offers starter templates to kickstart your projects, reducing setup time and facilitating rapid development. These templates include commonly used features and configurations, allowing developers to focus on building unique functionalities.
+How create Loader
+```
+npm run create:loader YourLoaderName
+```
 
-4. **Modular Architecture:**
-   Promotes a modular code structure, facilitating easy organization and scalability of applications as they evolve. This architecture encourages separation of concerns, making code maintenance and enhancements more manageable.
+How create Layout
+```
+npm run create:layout YourLayoutName
+```
 
-5. **Enhanced Security:**
-   Implements best practices for securing applications, including data validation, authentication, and authorization mechanisms. This ensures robust protection against common security threats.
 
-6. **Scalability and Performance Optimization:**
-   Provides guidelines and techniques for optimizing performance and scalability, enabling applications to handle increased loads and maintain responsiveness under high traffic conditions.
 
-7. **Comprehensive Documentation:**
-   Offers detailed documentation and guides to assist developers in understanding the project structure, implementation details, and best practices. This fosters collaboration and accelerates onboarding of new team members.
 
-8. **Community Support:**
-   Benefits from a vibrant community of developers contributing plugins, extensions, and enhancements. This fosters collaboration, knowledge sharing, and continuous improvement of the MERN-X ecosystem.
+Project Structure 
 
-By leveraging the capabilities of MERN-X, developers can accelerate the development process, reduce time-to-market, and deliver feature-rich web applications that meet the demands of modern users.
+```php
+mern-x/
+│
+├── app/                                      
+│   ├── config/                                 
+│   │   ├── cli.js
+│   │   ├── config.js
+│   │
+│   ├── controllers
+│   │   ├── todoController.js
+│   │
+│   ├── middlewares
+│   │   ├── authMiddleware.js
+│   │
+│   ├── models
+│   │   ├── todosModel.js
+│   │
+│   ├── storage/
+│   │
+│   ├── utility/
+│   │   ├── emailUtility.js
+│   │   ├── tokenUtility.js
+│   │   ├── validationUtility.js
+│   │
+│   ├── dist/
+│   │
+│   ├── node_modules/
+│   │
+│   ├── public/
+│   │
+│   ├── routes/
+│   │   ├── api.js
+│   │   ├── web.jsx
+│   │
+│   ├── views/
+│   │   ├── assets/
+│   │   │   ├── css/
+│   │   │   │    ├── style.js
+│   │     
+│   │   ├── components/
+│   │   │   ├── CreateForm.jsx
+│   │   │   ├── List.jsx 
+│   │   
+│   │   ├── layout/
+│   │   │   ├── AppLayout.jsx
+│   │   │
+│   │   
+│   │   ├── loader/
+│   │   │   ├── ListLoader.jsx
+│   │   │ 
+│   │   ├── pages/
+│   │   │   ├── CreatePage.jsx
+│   │   │   ├── ListPage.jsx 
+│   │     
+│   │   ├── main.jsx  
+│   │
+│   │
+│   ├── .gitattributes
+│   ├── .gitignore
+│   ├── app.js
+│   ├── index.html
+│   ├── LICENSE
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── postcss.config.js
+│   ├── README.md
+│   ├── tailwind.config.js
+│   ├── vite.config.js
+```
+
+
+- app: This directory contains the main application code.
+  - config: Configuration files for the application.
+  - controllers: Controllers for handling business logic.
+  - Middleware functions for handling requests.
+  - models: Database models.
+  - storage: Directory for storing files (if applicable).
+  - utility: Utility functions.
+- dist: Distribution files (compiled code).
+- node_modules: Node.js modules installed via npm.
+- public: Public assets.
+- routes: Route definitions.
+- views: React components and views.
+  - assets: Static assets like CSS files.
+  - components: Reusable React components.
+  - layout: Layout components.
+  - loader: Loading components.
+  - pages: Individual pages/components.
+- .gitattributes: Git attributes file.
+- .gitignore: Git ignore file.
+- app.js: Entry point of the Node.js application.
+- index.html: Main HTML file.
+- LICENSE: License file.
+- package.json: Project metadata and dependencies.
+- package-lock.json: Dependency lock file.
+- postcss.config.js: PostCSS configuration file.
+- README.md: Project documentation.
+-tailwind.config.js: Tailwind CSS configuration file.
+-vite.config.js: Vite configuration file.
