@@ -49,7 +49,7 @@ const List = () => {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {items.map((item, index) => (
+                                    {items.length>0?(items.map((item, index) => (
                                         <tr key={index} className={index % 2 === 0 ? "odd:bg-slate-50" : ""}>
                                             <td className="t-td">{item.name}</td>
                                             <td className="t-td">{item.description}</td>
@@ -59,7 +59,7 @@ const List = () => {
                                                 </button>
                                             </td>
                                         </tr>
-                                    ))}
+                                    ))):null}
                                     </tbody>
                                 </table>
                                 <Link to="/create" className="btn-primary  my-6">Create Item</Link>
