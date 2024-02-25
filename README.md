@@ -3,47 +3,67 @@
 To create a new project using MERN-X, simply run the following command:
 ```
 npx mern-x@latest
+// For yarn 
+yarn exec mern-x
 ```
 
 How to run project 
 ```
 npx run mern   // Project Back End Will Run @3000
 npx run dev    // Complete Project Will Run @3001
+
+// For yarn 
+yarn run mern
+yarn run dev
 ```
 
 How create Model
 ```
 npm run create:model YourModelName
+// For yarn 
+yarn run create:model YourModelName
 ```
 
 How create Controller
 ```
 npm run create:controller YourControllerName
+// For yarn 
+yarn run create:controller YourControllerName
 ```
 
 How create Middleware
 ```
 npm run create:middleware YourMiddlewareName
+// For yarn 
+yarn run create:middleware YourMiddlewareName
 ```
 
 How create Page
 ```
 npm run create:page YourPageName
+// For yarn 
+yarn run create:page YourPageName
 ```
 
 How create Component
 ```
 npm run create:component YourComponentName
+// For yarn 
+yarn run create:component YourComponentName
 ```
 
 How create Loader
 ```
 npm run create:loader YourLoaderName
+// For yarn 
+yarn run create:loader YourLoaderName
 ```
 
 How create Layout
 ```
 npm run create:layout YourLayoutName
+// For yarn
+yarn run create:layout YourLayoutName
 ```
 
 
