@@ -1,7 +1,7 @@
 export const MONGODB_CONNECTION = "mongodb+srv://mrrabbil:mernx123@cluster0.rtpbcy6.mongodb.net/app_todo?retryWrites=true&w=majority";
 
 export const JWT_SECRET = "5EC7CEFA1BE7C9354A639369A2AA8";
-export const JWT_EXPIRATION_TIME = "30d";
+export const JWT_EXPIRATION_TIME = 60*60*24*30; // 30 Days
 
 export const EMAIL_HOST = "";
 export const EMAIL_PORT = "";
