@@ -49,7 +49,7 @@ app.use(express.static('dist'));
 
 // Serve React front end for all routes not handled by the API
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'dist', 'app.html'));
+    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
 });
 
 app.listen(PORT,()=>{
