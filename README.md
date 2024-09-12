@@ -9,8 +9,8 @@ yarn exec mern-x
 
 How to run project 
 ```
-npx run mern   // Project Back End Will Run @3000
-npx run dev    // Complete Project Will Run @3001
+npm run mern   // Project Back End Will Run @3000
+npm run dev    // Complete Project Will Run @3001
 
 // For yarn 
 yarn run mern
