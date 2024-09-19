@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "mern": "node app/config/cli.js run:mernx",
-    "start": "node app.js",
+    "start": "npm run mern",
     "create:model": "node app/config/cli.js make:model",
     "create:controller": "node app/config/cli.js make:controller",
     "create:middleware": "node app/config/cli.js make:middleware",
@@ -58,8 +58,5 @@
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "vite": "^5.0.8"
-  },
-  "engines": {
-    "node": "20.x"
   }
 }

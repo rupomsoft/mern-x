@@ -242,3 +242,6 @@ mern-x/
 For more information on deploying this project on a VPS server, please refer to the following README files:
 
 - [Deployment Guide for Ubuntu VPS](/docs/deploy_mern_x_project.md)
+- [Deployment Guide for Vercel](/docs/deploying-mern-x-vercel.md)
+- [Deployment Guide for Railway](https://alphasec.io/how-to-deploy-a-nodejs-app-on-railway)
+- [Deployment Guide for Render](https://docs.render.com/deploy-node-express-app)
